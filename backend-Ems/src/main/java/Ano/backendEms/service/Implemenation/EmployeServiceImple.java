@@ -52,4 +52,12 @@ public class EmployeServiceImple implements EmployeService {
 
         return EmployeMapper.mapToEmployeDto(upadteem);
     }
+
+    @Override
+    public void employeDeltete(Long employId) {
+        Employe employe =   employeRepository.findById(employId).orElseThrow(
+                () -> new ResourceNotFoundException("Employe not Exits with give Id: " + employId)
+        );
+        employeRepository.deleteById(employId);
+    }
 }

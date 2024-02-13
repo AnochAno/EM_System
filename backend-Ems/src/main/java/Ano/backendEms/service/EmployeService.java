@@ -14,5 +14,7 @@ public interface EmployeService {
 
    EmployeDto updateembloy(Long employeId, EmployeDto updateEmployeDetalis);
 
+   void employeDeltete(Long employId);
+
 
 }
