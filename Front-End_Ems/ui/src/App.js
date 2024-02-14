@@ -1,11 +1,15 @@
-import logo from './logo.svg';
 import './App.css';
 import Employelist from './Components/employelist'
+import Footer from './Components/Footer';
+import Header from './Components/Header';
 
 function App() {
   return (
-    
-    <Employelist/>
+    <>
+    <Header/>
+    <Employelist />
+    <Footer/>
+    </>
   );
 }
 

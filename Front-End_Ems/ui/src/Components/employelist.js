@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useEffect, useState} from 'react'
 import Container from '@mui/material/Container';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
@@ -7,9 +7,22 @@ import TableRow from '@mui/material/TableRow';
 import TableCell from '@mui/material/TableCell';
 import Paper from '@mui/material/Paper';
 import TableContainer from '@mui/material/TableContainer';
+import { listempoyes } from '../Services/employedservices';
 
-const employelist = () => {
-    const dammydata =[
+const Employelist = () => {
+
+    const [employes, setEmployes] = useState([])
+    useEffect(() => {
+        listempoyes().then((response) => {
+            setEmployes(response.data);
+        }).catch(error =>{
+            console.log(error);
+        })
+
+    },[]
+    )
+
+    /*const dammydata =[
         {
             "id" : 1,
             "firstname" : "thankes",
@@ -22,12 +35,14 @@ const employelist = () => {
         {
             "id" : 2,
             "firstname" : "Sivaranchan",
-            "lastname" : "Ajeesh",
-            "email" : "ajeesh@gmail.com",
+            "lastname" : "tharu",
+            "email" : "tharuh@gmail.com",
             "phone": "0771536980"
 
         }
-    ]
+    ]*/
+
+
   return (
     <Container maxWidth="sm">
         
@@ -40,18 +55,18 @@ const employelist = () => {
       <Table sx={{ width: 10 }} size="large" aria-label="a dense table">
       
                 <TableHead>
-                    <TableRow>
-                        <TableCell>Employe Id</TableCell>
-                        <TableCell>Employ First-Name</TableCell>
-                        <TableCell>Employe Last-Name</TableCell>
-                        <TableCell>Employe Email</TableCell>
-                        <TableCell>Employe Phone-no</TableCell>
+                    <TableRow >
+                        <TableCell align="right">Id</TableCell>
+                        <TableCell align="right">First-Name</TableCell>
+                        <TableCell align="right">Last-Name</TableCell>
+                        <TableCell align="right"> Email</TableCell>
+                        <TableCell align="right"> Phone-no</TableCell>
                     </TableRow>
                 </TableHead>
                 
                 <TableBody>
                     {
-                        dammydata.map(employelist =>
+                        employes.map(employelist =>
                             <TableRow key={employelist.id}>
                                 <TableCell>{employelist.id}</TableCell>
                                 <TableCell>{employelist.firstname}</TableCell>
@@ -70,4 +85,4 @@ const employelist = () => {
   )
 }
 
-export default employelist
+export default Employelist
