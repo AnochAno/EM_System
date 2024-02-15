@@ -1,14 +1,17 @@
 import './App.css';
-import Employelist from './Components/employelist'
-import Footer from './Components/Footer';
-import Header from './Components/Header';
+import Employelist from './Components/employelist';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 function App() {
   return (
     <>
-    <Header/>
-    <Employelist />
-    <Footer/>
+      <Router>
+       
+        <Routes>
+          <Route path='/' element={<Employelist />} />
+        </Routes>
+       
+      </Router>
     </>
   );
 }
