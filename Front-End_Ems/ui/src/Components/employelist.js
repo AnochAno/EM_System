@@ -9,9 +9,13 @@ import Paper from '@mui/material/Paper';
 import TableContainer from '@mui/material/TableContainer';
 import { listempoyes } from '../Services/employedservices';
 
+
 const Employelist = () => {
 
     const [employes, setEmployes] = useState([])
+   
+
+
     useEffect(() => {
         listempoyes().then((response) => {
             setEmployes(response.data);
@@ -43,24 +47,27 @@ const Employelist = () => {
     ]*/
 
 
+
   return (
     <Container maxWidth="sm">
         
      
     <div>
     <h1 style={{textAlign:"center"}}>Employe's Details List</h1>
+
+    <button className= 'btn btn-primary mb-2'>Add Employees</button>
       
-      <TableContainer component={Paper}>
+      <TableContainer component={Paper} style={{ marginTop: "20px" }}>
       
       <Table sx={{ width: 10 }} size="large" aria-label="a dense table">
       
                 <TableHead>
                     <TableRow >
-                        <TableCell align="right">Id</TableCell>
-                        <TableCell align="right">First-Name</TableCell>
-                        <TableCell align="right">Last-Name</TableCell>
-                        <TableCell align="right"> Email</TableCell>
-                        <TableCell align="right"> Phone-no</TableCell>
+                        <TableCell align="center">Id</TableCell>
+                        <TableCell align="center">F-name</TableCell>
+                        <TableCell align="center">L-name</TableCell>
+                        <TableCell align="center">Email</TableCell>
+                        <TableCell align="center">T.P</TableCell>
                     </TableRow>
                 </TableHead>
                 
