@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { createEmploy } from '../Services/employedservices';
-import { useNavigate } from 'react-router-dom';
+import { createEmploy  } from '../Services/employedservices';
+import { useNavigate, useParams } from 'react-router-dom';
 
 const Employes = () => {
   const [firstname, setFirtname] = useState('');
@@ -8,33 +8,46 @@ const Employes = () => {
   const [email, setEmail] = useState('');
   const [phone, setPhone] = useState('');
 
+  const { id } = useParams();
+
   const navigator = useNavigate();
 
-  const handleFirstname = (e) =>  setFirtname(e.target.value);
-  
+  const handleFirstname = (e) => setFirtname(e.target.value);
   const handlelastname = (e) => setLastname(e.target.value);
-  
   const handleemail = (e) => setEmail(e.target.value);
-  
   const handlephone = (e) => setPhone(e.target.value);
-  
 
-  function saveEmplye  (e) {
+  function saveEmplye(e) {
     e.preventDefault();
-    const employeAr = {firstname,lastname,email,phone}
+    const employeAr = { firstname, lastname, email, phone };
     console.log(employeAr);
-    createEmploy(employeAr).then((reponse) =>{
-        console.log(reponse.data);
-        navigator('/')
+    createEmploy (employeAr).then((response) => {
+      console.log(response.data);
+      navigator('/');
     })
-}
+    .catch((error) => {
+        console.error('Error creating employee:', error);
+      
+      });
+  }
+
+  function pageTittle() {
+    if (id) {
+      return <h2 style={{ textAlign: 'center' }}>Update Employee</h2>;
+    } else {
+      
+      return <h2 style={{ textAlign: 'center' }}>Add Employee</h2>;
+    }
+  }
 
   return (
     <div className='container'>
       <br /><br />
       <div className='row'>
         <div className='card col-md-6 offset-md-3 offset-md-3'>
-          <h2 style={{ textAlign: 'center' }}>Add Employee</h2>
+          {
+            pageTittle()
+          }
           <div className='card-body'>
             <form className='form-group mb-2'>
               <label className='form-label'>First Name</label>
