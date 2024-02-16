@@ -8,12 +8,13 @@ import TableCell from '@mui/material/TableCell';
 import Paper from '@mui/material/Paper';
 import TableContainer from '@mui/material/TableContainer';
 import { listempoyes } from '../Services/employedservices';
+import { useNavigate } from 'react-router-dom';
 
 
 const Employelist = () => {
 
     const [employes, setEmployes] = useState([])
-   
+    const navigate = useNavigate();
 
 
     useEffect(() => {
@@ -46,7 +47,9 @@ const Employelist = () => {
         }
     ]*/
 
-
+    const handleClick = () => {
+        navigate('/add-employees'); 
+      };
 
   return (
     <Container maxWidth="sm">
@@ -55,7 +58,7 @@ const Employelist = () => {
     <div>
     <h1 style={{textAlign:"center"}}>Employe's Details List</h1>
 
-    <button className= 'btn btn-primary mb-2'>Add Employees</button>
+    <button className= 'btn btn-primary mb-2' onClick={handleClick}>Add Employees</button>
       
       <TableContainer component={Paper} style={{ marginTop: "20px" }}>
       

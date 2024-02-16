@@ -1,7 +1,7 @@
 import './App.css';
-
 import Employeelist from './Components/employelist';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Em from './Components/Employes'
 
 function App() {
   return (
@@ -15,6 +15,8 @@ function App() {
       <Router>
         <Routes>
           <Route path='/' element={<Employeelist />} />
+          <Route path="/employe" element={<Employeelist />} />
+          <Route path="/add-employees" element={<Em />} />
         </Routes>
        
       </Router>
