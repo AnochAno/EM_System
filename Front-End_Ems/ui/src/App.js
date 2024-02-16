@@ -16,7 +16,8 @@ function App() {
         <Routes>
           <Route path='/' element={<Employeelist />} />
           <Route path="/employe" element={<Employeelist />} />
-          <Route path="/add-employees" element={<Em />} />
+          <Route path="/add_employees" element={<Em />} />
+          <Route path="/edit_employe/:Id" element={<Em/>}/>
         </Routes>
        
       </Router>

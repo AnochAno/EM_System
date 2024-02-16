@@ -11,6 +11,7 @@ import { listempoyes } from '../Services/employedservices';
 import { useNavigate } from 'react-router-dom';
 
 
+
 const Employelist = () => {
 
     const [employes, setEmployes] = useState([])
@@ -50,7 +51,13 @@ const Employelist = () => {
     const handleClick = () => {
         navigate('/add-employees'); 
       };
+     
+    function updateEmploye(id){
+        navigate('/edit_employe/${id}')
+    }  
 
+
+    
   return (
     <Container maxWidth="sm">
         
@@ -71,6 +78,7 @@ const Employelist = () => {
                         <TableCell align="center">L-name</TableCell>
                         <TableCell align="center">Email</TableCell>
                         <TableCell align="center">T.P</TableCell>
+                        <TableCell align="center">Action</TableCell>
                     </TableRow>
                 </TableHead>
                 
@@ -83,6 +91,7 @@ const Employelist = () => {
                                 <TableCell>{employelist.lastname}</TableCell>
                                 <TableCell>{employelist.email}</TableCell>
                                 <TableCell>{employelist.phone}</TableCell>
+                                <TableCell><button className='btn btn-info' onClick={()=> updateEmploye(employelist.id)}>Update</button></TableCell>
 
                             </TableRow>)
                     }
