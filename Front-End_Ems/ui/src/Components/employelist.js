@@ -1,14 +1,20 @@
 import React, {useEffect, useState} from 'react'
 import Container from '@mui/material/Container';
-import Table from '@mui/material/Table';
-import TableBody from '@mui/material/TableBody';
-import TableHead from '@mui/material/TableHead';
-import TableRow from '@mui/material/TableRow';
-import TableCell from '@mui/material/TableCell';
-import Paper from '@mui/material/Paper';
-import TableContainer from '@mui/material/TableContainer';
 import { listempoyes } from '../Services/employedservices';
 import { useNavigate } from 'react-router-dom';
+import { styled } from '@mui/material/styles';
+import Box from '@mui/material/Box';
+import Paper from '@mui/material/Paper';
+import Grid from '@mui/material/Grid';
+
+const Item = styled(Paper)(({ theme }) => ({
+    backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
+    ...theme.typography.body2,
+    padding: theme.spacing(1),
+    textAlign: 'center',
+    color: theme.palette.text.secondary,
+  }));
+  
 
 
 
@@ -52,55 +58,56 @@ const Employelist = () => {
         navigate('/add-employees'); 
       };
      
-    function updateEmploye(id){
-        navigate('/edit_employe/${id}')
-    }  
+    const editClick = () =>{
+        navigate('/Edit-employees');
+    } 
 
 
     
   return (
-    <Container maxWidth="sm">
-        
-     
-    <div>
-    <h1 style={{textAlign:"center"}}>Employe's Details List</h1>
-
-    <button className= 'btn btn-primary mb-2' onClick={handleClick}>Add Employees</button>
-      
-      <TableContainer component={Paper} style={{ marginTop: "20px" }}>
-      
-      <Table sx={{ width: 10 }} size="large" aria-label="a dense table">
-      
-                <TableHead>
-                    <TableRow >
-                        <TableCell align="center">Id</TableCell>
-                        <TableCell align="center">F-name</TableCell>
-                        <TableCell align="center">L-name</TableCell>
-                        <TableCell align="center">Email</TableCell>
-                        <TableCell align="center">T.P</TableCell>
-                        <TableCell align="center">Action</TableCell>
-                    </TableRow>
-                </TableHead>
-                
-                <TableBody>
-                    {
-                        employes.map(employelist =>
-                            <TableRow key={employelist.id}>
-                                <TableCell>{employelist.id}</TableCell>
-                                <TableCell>{employelist.firstname}</TableCell>
-                                <TableCell>{employelist.lastname}</TableCell>
-                                <TableCell>{employelist.email}</TableCell>
-                                <TableCell>{employelist.phone}</TableCell>
-                                <TableCell><button className='btn btn-info' onClick={()=> updateEmploye(employelist.id)}>Update</button></TableCell>
-
-                            </TableRow>)
-                    }
-                </TableBody>
-
-            </Table>
-            </TableContainer>
+<Container >
+    <Box sx={{ flexGrow: 1 }}>
+      <Grid container spacing={2}>
+        <Grid item xs={12}>
+          <Item><div>
+  <h1 style={{ textAlign: "center" }}>Employee's Details List</h1>
+    <div style={{ overflowX: "auto" }}>
+            <div class="button-container">
+                <button className='btn btn-primary mb-2' onClick={handleClick}>Add Employees</button>
+            </div>
+      <table className="table table-success table-striped">
+        <thead>
+          <tr>
+            <th align="center">Id</th>
+            <th align="center">First Name</th>
+            <th align="center">Last Name</th>
+            <th align="center">Email</th>
+            <th align="center">T.P</th>
+            <th align="center" >Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          {employes.map(employelist =>
+            <tr key={employelist.id}>
+              <td>{employelist.id}</td>
+              <td>{employelist.firstname}</td>
+              <td>{employelist.lastname}</td>
+              <td>{employelist.email}</td>
+              <td>{employelist.phone}</td>
+              <td><button className='btn btn-info' onClick={editClick}>Update</button></td>
+            </tr>
+          )}
+        </tbody>
+      </table>
     </div>
+  
+</div>
+</Item>
+        </Grid>
+      </Grid>
+    </Box>    
     </Container>
+    
   )
 }
 
