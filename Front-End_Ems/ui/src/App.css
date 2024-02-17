@@ -13,3 +13,9 @@
 .button-container {
   text-align: left;
 }
+#updateButton {
+  margin-right: 10px; /* Adjust the margin as needed */
+}
+#deleteButton{
+  margin-right: 10px; 
+}
