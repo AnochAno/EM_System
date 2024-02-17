@@ -1,14 +1,12 @@
 import React, { useState } from 'react';
-import { createEmploy  } from '../Services/employedservices';
-import { useNavigate, useParams } from 'react-router-dom';
+import { createEmploye } from '../Services/employedservices';
+import { useNavigate } from 'react-router-dom';
 
 const Employes = () => {
-  const [firstname, setFirtname] = useState('');
-  const [lastname, setLastname] = useState('');
-  const [email, setEmail] = useState('');
-  const [phone, setPhone] = useState('');
-
-  const { id } = useParams();
+  const [firstname, setFirtname] = useState('')
+  const [lastname, setLastname] = useState('')
+  const [email, setEmail] = useState('')
+  const [phone, setPhone] = useState('')
 
   const navigator = useNavigate();
 
@@ -21,23 +19,11 @@ const Employes = () => {
     e.preventDefault();
     const employeAr = { firstname, lastname, email, phone };
     console.log(employeAr);
-    createEmploy (employeAr).then((response) => {
-      console.log(response.data);
-      navigator('/');
-    })
-    .catch((error) => {
-        console.error('Error creating employee:', error);
-      
-      });
-  }
 
-  function pageTittle() {
-    if (id) {
-      return <h2 style={{ textAlign: 'center' }}>Update Employee</h2>;
-    } else {
-      
-      return <h2 style={{ textAlign: 'center' }}>Add Employee</h2>;
-    }
+    createEmploye(employeAr).then((response) =>{
+      console.log(response.data)
+      navigator('/')
+    })
   }
 
   return (
@@ -45,9 +31,7 @@ const Employes = () => {
       <br /><br />
       <div className='row'>
         <div className='card col-md-6 offset-md-3 offset-md-3'>
-          {
-            pageTittle()
-          }
+        <h1 style={{textAlign:"center"}}>Add Employee Details</h1>
           <div className='card-body'>
             <form className='form-group mb-2'>
               <label className='form-label'>First Name</label>
