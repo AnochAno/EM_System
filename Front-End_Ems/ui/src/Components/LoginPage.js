@@ -1,19 +1,18 @@
 import React from 'react';
 import { useState } from 'react';
 import { Button, Col, Container, Form, Row } from 'react-bootstrap';
+import { FaFacebook, FaGoogle, FaTwitter } from 'react-icons/fa';
 
 const LoginPage = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
-  const handleSignIn = () => {
-    // Handle sign-in logic here
-  };
+  const handleSignIn = () => {};
 
   return (
-    <Container className="d-flex align-items-center justify-content-center" style={{ minHeight: '100vh' }}>
+    <Container  style={{ minHeight: '100vh' }}>
       <Row className="justify-content-center">
-        <Col md={6}>
+        <Col md={8} lg={6} xl={4}>
           <Form>
             <h2 className="text-center mb-4">Sign In</h2>
             <Form.Group controlId="username">
@@ -49,15 +48,9 @@ const LoginPage = () => {
           <hr className="my-4" />
           <h6 className="text-center">Or sign in with social media</h6>
           <div className="d-flex justify-content-center mt-3">
-            <Button variant="primary" className="me-2">
-              Facebook
-            </Button>
-            <Button variant="danger" className="me-2">
-              Google
-            </Button>
-            <Button variant="info">
-              Twitter
-            </Button>
+            <FaFacebook className="me-2" style={{ fontSize: '2em', color: '#3b5998' }} />
+            <FaGoogle className="me-2" style={{ fontSize: '2em', color: '#db4437' }} />
+            <FaTwitter style={{ fontSize: '2em', color: '#1da1f2' }} />
           </div>
         </Col>
       </Row>
