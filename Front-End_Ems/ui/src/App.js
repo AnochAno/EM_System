@@ -3,7 +3,8 @@ import Employeelist from './Components/employelist';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Em from './Components/Employes'
 import EditEmployee from './Components/EditEmployee';
-import { Container } from '@mui/material';
+import LoginPage from './Components/LoginPage';
+
 
 function App() {
   return (
@@ -16,7 +17,8 @@ function App() {
 
       <Router>
         <Routes>
-          <Route path='/' element={<Employeelist />} />
+          <Route path='/' element={<LoginPage/>}/>
+          <Route path='/home' element={<Employeelist />} />
           <Route path="/add-employees" element={<Em />} />
           <Route path ="/Edit-employees" element={<EditEmployee/>}/>
         </Routes>
