@@ -1,61 +1,82 @@
-import React, { useState } from 'react';
-import { createEmploye } from '../Services/employedservices';
-import { useNavigate } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { createEmploye, updateEmploye } from '../Services/employedservices';
+import { useNavigate, useParams } from 'react-router-dom';
+import { Button, Container, Form } from 'react-bootstrap';
 
 const Employes = () => {
-  const [firstname, setFirtname] = useState('')
-  const [lastname, setLastname] = useState('')
-  const [email, setEmail] = useState('')
-  const [phone, setPhone] = useState('')
-
+  const [firstname, setFirstname] = useState('');
+  const [lastname, setLastname] = useState('');
+  const [email, setEmail] = useState('');
+  const [phone, setPhone] = useState('');
+  const { id } = useParams();
   const navigator = useNavigate();
 
-  const handleFirstname = (e) => setFirtname(e.target.value);
-  const handlelastname = (e) => setLastname(e.target.value);
-  const handleemail = (e) => setEmail(e.target.value);
-  const handlephone = (e) => setPhone(e.target.value);
+  useEffect(() => {
+    if (id) {
+      updateEmploye(id).then((response) => {
+        const { firstname, lastname, email, phone } = response.data;
+        setFirstname(firstname);
+        setLastname(lastname);
+        setEmail(email);
+        setPhone(phone);
+      }).catch((error) => {
+        console.log(error);
+      });
+    }
+  }, [id]);
 
-  function saveEmplye(e) {
+  const handleFirstname = (e) => setFirstname(e.target.value);
+  const handleLastname = (e) => setLastname(e.target.value);
+  const handleEmail = (e) => setEmail(e.target.value);
+  const handlePhone = (e) => setPhone(e.target.value);
+
+  const saveEmployee = (e) => {
     e.preventDefault();
-    const employeAr = { firstname, lastname, email, phone };
-    console.log(employeAr);
-
-    createEmploye(employeAr).then((response) =>{
-      console.log(response.data)
-      navigator('/')
-    })
-  }
+    const employeeData = { firstname, lastname, email, phone };
+    if (id) {
+      updateEmploye(id, employeeData).then((response) => {
+        console.log(response.data);
+        navigator('/home');
+      }).catch((error) => {
+        console.log(error);
+      });
+    } else {
+      createEmploye(employeeData).then((response) => {
+        console.log(response.data);
+        navigator('/home');
+      }).catch((error) => {
+        console.log(error);
+      });
+    }
+  };
 
   return (
-    <div className='container'>
-      <br /><br />
-      <div className='row'>
-        <div className='card col-md-6 offset-md-3 offset-md-3'>
-        <h1 style={{textAlign:"center"}}>Add Employee Details</h1>
-          <div className='card-body'>
-            <form className='form-group mb-2'>
-              <label className='form-label'>First Name</label>
-              <input type='text' placeholder='Enter the First Name' name='firstname' value={firstname} className='form-control' onChange={handleFirstname} />
-            </form>
-            <form className='form-group mb-2'>
-              <label className='form-label'>Last Name</label>
-              <input type='text' placeholder='Enter the last Name' name='lastname' value={lastname} className='form-control' onChange={handlelastname} />
-            </form>
-            <form className='form-group mb-2'>
-              <label className='form-label'>Email ID</label>
-              <input type='email' placeholder='Enter the Email ID' name='emailID' value={email} className='form-control' onChange={handleemail} />
-            </form>
-            <form className='form-group mb-2'>
-              <label className='form-label'>Phone No</label>
-              <input type='phone' placeholder='Enter the phone Nunmber' name='phone' value={phone} className='form-control' onChange={handlephone} />
-            </form>
-            <button type="button" className="btn btn-success" onClick={saveEmplye}>Success</button>
-          </div>
-
+    <Container>
+      <h1 style={{ textAlign: "center" }}>{id ? 'Update' : 'Add'} Employee Details</h1>
+      <div className='card col-md-6 offset-md-3 offset-md-3'>
+        <div className='card-body'>
+          <Form>
+            <Form.Group className="mb-3" controlId="formFirstName">
+              <Form.Label>First Name</Form.Label>
+              <Form.Control type="text" placeholder="Enter First Name" value={firstname} onChange={handleFirstname} />
+            </Form.Group>
+            <Form.Group className="mb-3" controlId="formLastName">
+              <Form.Label>Last Name</Form.Label>
+              <Form.Control type="text" placeholder="Enter Last Name" value={lastname} onChange={handleLastname} />
+            </Form.Group>
+            <Form.Group className="mb-3" controlId="formEmail">
+              <Form.Label>Email Address</Form.Label>
+              <Form.Control type="email" placeholder="Enter Email" value={email} onChange={handleEmail} />
+            </Form.Group>
+            <Form.Group className="mb-3" controlId="formPhone">
+              <Form.Label>Phone Number</Form.Label>
+              <Form.Control type="tel" placeholder="Enter Phone Number" value={phone} onChange={handlePhone} />
+            </Form.Group>
+            <Button variant="success" onClick={saveEmployee}>{id ? 'Update' : 'Save'}</Button>
+          </Form>
         </div>
       </div>
-
-    </div>
+    </Container>
   );
 };
 

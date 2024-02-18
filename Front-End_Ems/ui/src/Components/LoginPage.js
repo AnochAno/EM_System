@@ -12,7 +12,11 @@ const LoginPage = () => {
   const navigate = useNavigate();
 
   const handleSignIn = () => {
-      navigate('/home');
+      if (username === 'admin' && password === 'ano'){
+        navigate('/home');
+      }else{
+        alert('Invalid username or password');
+      }
 
   };
   
