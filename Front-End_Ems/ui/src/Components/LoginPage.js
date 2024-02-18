@@ -2,12 +2,20 @@ import React from 'react';
 import { useState } from 'react';
 import { Button, Col, Container, Form, Row } from 'react-bootstrap';
 import { FaFacebook, FaGoogle, FaTwitter } from 'react-icons/fa';
+import { useNavigate } from 'react-router-dom';
 
 const LoginPage = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
-  const handleSignIn = () => {};
+
+  const navigate = useNavigate();
+
+  const handleSignIn = () => {
+      navigate('/home');
+
+  };
+  
 
   return (
     <Container  style={{ minHeight: '100vh' }}>
