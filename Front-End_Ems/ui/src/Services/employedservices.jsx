@@ -7,3 +7,5 @@ export const listempoyes = () => axios.get(REST_API_Common_URL);
 export const createEmploye = (addEmploye) => axios.post(REST_API_Common_URL, addEmploye);
 
 export const updateEmploye = (employeId, employeData) => axios.put(`${REST_API_Common_URL}/${employeId}`, employeData);
+
+export const deleteEmploye = (employeId, employeData) => axios.delete(`${REST_API_Common_URL}/${employeId}`, employeData);
