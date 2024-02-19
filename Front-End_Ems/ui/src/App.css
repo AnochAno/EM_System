@@ -19,3 +19,7 @@
 #deleteButton{
   margin-right: 10px; 
 }
+.btn btn-danger{
+  background-color: brown;
+  margin-right: 10px;
+}
