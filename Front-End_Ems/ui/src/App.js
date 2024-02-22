@@ -1,5 +1,5 @@
 import './App.css';
-import Employeelist from './Components/employelist';
+import Employeelist from './Components/Employelist';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Em from './Components/Employes'
 import EditEmployee from './Components/EditEmployee';
