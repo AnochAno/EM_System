@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import { deleteEmploye, listempoyes } from '../Services/employedservices';
 import { useNavigate } from 'react-router-dom';
 import { Button, Container, Table } from 'react-bootstrap';
-import { textAlign } from '@mui/system';
 
 const Employelist = () => {
   const [employes, setEmployes] = useState([]);

@@ -1,5 +1,5 @@
 import './App.css';
-import Employeelist from './Components/Employelist';
+import Employeelist from './Components/employelist';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Em from './Components/Employes'
 import EditEmployee from './Components/EditEmployee';
@@ -27,7 +27,7 @@ function App() {
       </Router>
      
       <footer className='footer'>
-        <span>All rights reserved 2024 by <b><a href='www.google.com'>Anojan.com</a></b></span>
+        <span>All rights reserved 2024 by <b><a href='https://anojan.vercel.app/' target='blank'>Anojan.com</a></b></span>
       </footer>
       
     </>
